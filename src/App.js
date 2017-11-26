@@ -1,16 +1,41 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import BusinessList from './Components/BusinessList/BusinessList.js';
-import SearchBar from './Components/SearchBar/SearchBar.js';
+import BusinessList from './Components/BusinessList/BusinessList';
+import SearchBar from './Components/SearchBar/SearchBar';
 
-class App extends Component {
+let business = {
+ imageSrc: 'https://s3.amazonaws.com/codecademy-content/programs/react/ravenous/pizza.jpg',
+ name: 'MarginOtto Pizzeria',
+ address: '1010 Paddington Way',
+ city: 'Flavortown',
+ state: 'NY',
+ zipCode: '10101',
+ category: 'Italian',
+ rating: 4.5,
+ reviewCount: 90
+};
+
+const businesses = [
+  business,
+  business,
+  business,
+  business,
+  business,
+  business
+];
+
+class App extends React.Component {
+searchYelp(term, location, sortBy){
+  console.log('Searching Yelp with {term}, {location}, {best_match}');
+}
+
   render() {
     return (
       <div className="App">
   <h1>ravenous</h1>
-  <SearchBar />
-  <BusinessList />
+  <SearchBar searchYelp={this.searchYelp}/>
+  <BusinessList businesses={businesses} />
 </div>
     );
   }
