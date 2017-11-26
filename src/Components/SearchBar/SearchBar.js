@@ -34,26 +34,26 @@ class SearchBar extends React.Component{
   }
 
   handleTermChange(event){
-    this.setState={
+    this.setState=({
       term: event.target.value
-    };
+    });
   }
 
   handleLocationChange(event){
-    this.setState={
+    this.setState=({
       location: event.target.value
-    };
+    });
   }
 
   handleSearch(event){
-  searchYelp(term, location, sortBy);
+  this.props.searchYelp(this.state.term, this.state.location, this.state.sortBy);
   event.preventDefault()
   }
 
   renderSortByOptions(){
     return Object.keys(sortByOption).map(sortByOption =>{
       let sortByOptionValue = sortByOption[sortByOption];
-      return <li key={sortByOptionValue} className={getSortByClass(sortByOptionValue)} onClick={handleSortByChange.bind(this, sortByOptionValue)}>{sortByOption}</li>;
+      return <li key={sortByOptionValue} className={this.getSortByClass(sortByOptionValue)} onClick={this.handleSortByChange.bind(this, sortByOptionValue)}>{sortByOption}</li>;
     });
   }
 
@@ -63,12 +63,12 @@ render(){
   return <div className="SearchBar">
   <div className="SearchBar-sort-options">
     <ul>
-    {renderSortByOptions(sortByOption)}
+    {this.renderSortByOptions(sortByOption)}
     </ul>
   </div>
   <div className="SearchBar-fields">
-    <input placeholder="Search Businesses" onChange={handleTermChange()} />
-    <input placeholder="Where?" onChange={handleLocationChange()}/>
+    <input placeholder="Search Businesses" onChange={this.handleTermChange()} />
+    <input placeholder="Where?" onChange={this.handleLocationChange()}/>
   </div>
   <div className="SearchBar-submit">
     <a onClick={this.handleSearch}>Let&#39;s Go</a>
